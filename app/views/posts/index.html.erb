@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+<div class="container row">
+<h1 class="text-center">Ultimos Posts</h1>
+</div>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p><%= post.description %></p>
+        <p class="fw-bold">Comentarios:</p>
+        <% post.comments.each do |comment| %>
+          <p class="card-text"><%= comment.content %></p>
+        <% end %>
+        <p class="fst-italic">A <% post.reactions.count %> les gusta esto </p>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+<div class="apple_pagination"
+  <%= will_paginate @posts %>
+</div>
+<div class="container btn">
+  <%= link_to "New post", new_post_path, :class => "btn btn-dark" %>
+</div>
